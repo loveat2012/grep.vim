@@ -1,6 +1,6 @@
 " File: grep.vim
 " Author: Yegappan Lakshmanan (yegappan AT yahoo DOT com)
-" Version: 1.11
+" Version: 1.12
 " Last Modified: April 24, 2013
 " 
 " Overview
@@ -594,7 +594,9 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
             if find_prune != ''
                 let find_prune = find_prune . ' -o'
             endif
-            let find_prune = find_prune . ' -name ' . one_dir
+            let find_prune = find_prune . ' -name ' . 
+                             \ g:Grep_Shell_Quote_Char. one_dir . 
+                             \ g:Grep_Shell_Quote_Char
             let txt = strpart(txt, stridx(txt, ' ') + 1)
         endwhile
         let find_prune = '-type d ' . g:Grep_Shell_Escape_Char . '(' .
